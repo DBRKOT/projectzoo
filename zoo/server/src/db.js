@@ -11,6 +11,9 @@ export const pool = new Pool({
   user: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASSWORD || '123',
   database: process.env.DB_NAME || 'zoo',
+  ssl: process.env.DB_SSL === 'true' || process.env.NODE_ENV === 'production'
+    ? { rejectUnauthorized: false }
+    : false,
   max: 10,
 })
 
